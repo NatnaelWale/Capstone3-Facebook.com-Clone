@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,47 +13,290 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="styles/global.css">
 
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="./landing.css">
+    <link rel="stylesheet" href="styles/style.css">
 
-    <title>Login to the Microblog Network!</title>
+    <title>Facebook</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="images/2021_Facebook_icon.svg">
 
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
-    <script src="./auth.js"></script>
+    <script src="scripts/auth.js"></script>
     <script>
         if (isLoggedIn() === true) window.location.replace("/posts");
     </script>
 </head>
-<body>
 
-    <header>
-        <h1>Welcome to <code>YOUR MICROBLOG NETWORK</code></h1>
-    </header>
+
+<body class="main-bg">
+
+     <!-- ************************************************************************ -->
 
     <main>
 
-        <form id="login">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" minlength="3">
-            </div>
+       <!-- ************************************************************************ -->
+        <!-- Cover up layer to reduce opacity of the background while new user fills registration form -->
+        <div class="layer">
+        </div>
+        <!-- End of cover up layer -->
+    
+       <!-- ************************************************************************ -->
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" minlength="6">
+        <!-- For the login and information page -->
+        <div class="container-fluid" style="margin-top: 8%;">
+            <div class="row">
+                <div class="col">
+                    <br>
+                    <br>
+                    <div class="first">
+                        <p class="text-blue mb-0">facebook</p>
+                        <p class="text-black">Connect with friends and the world around you on Facebook.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="second">
+                        <div class="card" style="width: 26rem;">
+                            <div class="card-body">
+                                <form id="logIn">
+                                    <input type="text" id="username" placeholder="Email or phone number" class="form-control">
+                                    <input type="password" id="password" placeholder="Password" class="form-control mt-3">
+                                    <button class="btn btn-blue fw-bold fs-5 mt-3 w-100 py-2" id="logInButton">Log in</button>
+                                    <p class="text-center pass mt-3">Forgot password?</p>
+                                    <hr class="mt-4 text-muted">
+                                    <div class="px-btn">
+                                        <button class="btn btn-green fw-bold mt-3 mb-2" onclick="show()">Create new
+                                            account</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <p class="last-txt text-center mt-4"><span>Create a page</span> for a celebrity, brand or
+                            business.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+        <!-- End of login or information page -->
 
-            <button id="loginButton" type="submit">Login</button>
-        </form>
+        <!-- ************************************************************************ -->
+
+        <!-- For registration page -->
+        <div class="signUp" id="signUp">
+            <div class="top">
+                <div>
+                    <h2 class="mb-1">Sign Up</h2>
+                    <p>It's quick and easy.</p>
+                </div>
+                <img src="images/x-lg.svg" alt="close" onclick="hide()">
+            </div>
+            <hr class="mb-1">
+            <form action="">
+                <div class="signup_body">
+                    <div class="name">
+                        <input type="text" placeholder="First name" class="same form-label">
+                        <input type="text" placeholder="Last name" class="same form-label">
+                    </div>
+                    <div class="bottom">
+                        <input type="text" placeholder="Mobile number or email" class="form-label">
+                        <input type="text" placeholder="New password" class="form-label">
+                    </div>
+                </div>
+                <div class="birthday">
+                    <p class="text mb-0">Birthday <i style="color:grey;" class="bi bi-question-circle-fill"></i></p>
+                    <div class="date">
+                        <select name="" id="">
+                            <option value="Jan">Jan</option>
+                            <option value="Feb">Feb</option>
+                            <option value="Mar">Mar</option>
+                            <option value="Apr">Apr</option>
+                            <option value="May">May</option>
+                            <option value="Jun">Jun</option>
+                            <option value="Jul">Jul</option>
+                            <option value="Aug">Aug</option>
+                            <option value="Sep">Sep</option>
+                            <option value="Oct">Oct</option>
+                            <option value="Nov">Nov</option>
+                            <option value="Dec">Dec</option>
+                        </select>
+                        <select name="" id="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                            <option value="">6</option>
+                            <option value="">7</option>
+                            <option value="">8</option>
+                            <option value="">9</option>
+                            <option value="">10</option>
+                            <option value="">11</option>
+                            <option value="">12</option>
+                            <option value="">13</option>
+                            <option value="">14</option>
+                            <option value="">15</option>
+                            <option value="">16</option>
+                            <option value="">17</option>
+                            <option value="">18</option>
+                            <option value="">19</option>
+                            <option value="">20</option>
+                            <option value="">21</option>
+                            <option value="">22</option>
+                            <option value="">23</option>
+                            <option value="">24</option>
+                            <option value="">25</option>
+                            <option value="">26</option>
+                            <option value="">27</option>
+                            <option value="">28</option>
+                            <option value="">29</option>
+                            <option value="">30</option>
+                            <option value="">31</option>
+                        </select>
+                        <select name="" id="">
+                            <option value="">2024</option>
+                            <option value="">2023</option>
+                            <option value="">2022</option>
+                            <option value="">2021</option>
+                            <option value="">2020</option>
+                            <option value="">2019</option>
+                            <option value="">2018</option>
+                            <option value="">2017</option>
+                            <option value="">2016</option>
+                            <option value="">2015</option>
+                            <option value="">2014</option>
+                            <option value="">2013</option>
+                            <option value="">2012</option>
+                            <option value="">2011</option>
+                            <option value="">2010</option>
+                            <option value="">2009</option>
+                            <option value="">2008</option>
+                            <option value="">2007</option>
+                            <option value="">2006</option>
+                            <option value="">2005</option>
+                            <option value="">2004</option>
+                            <option value="">2003</option>
+                            <option value="">2002</option>
+                            <option value="">2001</option>
+                            <option value="">2000</option>
+                            <option value="">1999</option>
+                            <option value="">1998</option>
+                            <option value="">1997</option>
+                            <option value="">1996</option>
+                            <option value="">1995</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gender">
+                    <p class="text mb-0 mt-2">Gender <i style="color:grey;" class="bi bi-question-circle-fill"></i></p>
+                    <div class="person">
+                        <div>
+                            <label for="female">Female</label>
+                            <input type="radio" name="gender" id="female">
+                        </div>
+                        <div>
+                            <label for="male" >Male</label>
+                            <input type="radio" id="male" name="gender">
+                        </div>
+                        <div>
+                            <label for="custom" >Custom</label>
+                            <input type="radio" id="custom" name="gender">
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <p>People who use our service may have uploaded your contact information to Facebook. <span class="blue">Learn more.</span></p>
+                    <p>By clicking sign up, you agree to our Terms, <span class="blue">Privacy Policy and Cookies Policy</span>. You may receive SMS Notifications from us and can opt out any time.</p>
+                </div>
+                <button class="signin">Sign up</button>
+            </form>
+        </div>
+        <!-- End of registration page -->
+
+        <!-- ************************************************************************ -->
 
     </main>
 
-    <footer></footer>
+        <!-- ************************************************************************ -->
 
-    <!-- Page-specific code -->
-    <script src="./landing.js"></script>
+    <!-- Footer of the page -->
+    <footer class="fixed-bottom footer pt-5">
+        <ul class="d-flex lists list-unstyled">
+            <li>English(US)</li>
+            <li>Español</li>
+            <li>Français (France)</li>
+            <li>中文(简体)</li>
+            <li>العربية</li>
+            <li>Português (Brasil)</li>
+            <li>Italiano</li>
+            <li>한국어</li>
+            <li>Deutsch</li>
+            <li>हिन्दी</li>
+            <li>日本語</li>
+        </ul>
+        <hr class="container line" width = 50%>
+        <ul class="d-flex lists list-unstyled mb-1">
+            <li>Sign Up</li>
+            <li>Log In</li>
+            <li>Messenger</li>
+            <li>Facebook Lite</li>
+            <li>Video</li>
+            <li>Places</li>
+            <li>Games</li>
+            <li>Marketplace</li>
+            <li>Meta Pay</li>
+            <li>Meta Store</li>
+            <li>Meta Quest</li>
+            <li>Meta AI</li>
+            <li>Instagram</li>
+            <li>Threads</li>
+        </ul>
+        <ul class="d-flex lists list-unstyled mb-1">
+            <li>Fundraisers</li>
+            <li>Services</li>
+            <li>Voting Information Center</li>
+            <li>Privacy Policy</li>
+            <li>Consumer Health Privacy</li>
+            <li>Privacy Center</li>
+            <li>Groups</li>
+            <li>About</li>
+            <li>Create ad</li>
+            <li>Create Page</li>
+        </ul>
+        <ul class="d-flex lists list-unstyled mb-1">
+            <li>Developers</li>
+            <li>Careers</li>
+            <li>Cookies</li>
+            <li>Ad choices<i class="bi bi-play"></i></li>
+            <li>Terms</li>
+            <li>Help</li>
+            <li>Contact Uploading & Non-Users</li>
+        </ul>
+        <ul class="list-unstyled lists mt-4 mb-5">
+            <li><strong>Meta &#169; 2024</strong></li>
+        </ul>
+    </footer>
+    <!-- End of the footer page -->
+
+     <!-- ************************************************************************ -->
+
+    <!-- scripts of the page -->
+    <script src="scripts/landing.js"></script>
+    <script>
+        const show = () => {
+            const showsSignUpPage = document.querySelector("#signUp");
+            showsSignUpPage.classList.toggle("show");
+            document.querySelector(".layer").style.display="block"
+        }
+        const hide = () => {
+            const hideSignUpPage = document.querySelector("#signUp");
+            hideSignUpPage.classList.remove("show");
+             document.querySelector(".layer").style.display="none"
+        }
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,268 @@
+.main-bg {
+    background-color: #F0F2F5;
+}
+
+.first {
+    padding-left: 45%;
+}
+
+.text-blue {
+    color: #1e76e9;
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.text-black {
+    color: #1c1e21;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.second {
+    padding-left: 7%;
+}
+
+.btn-blue {
+    background: #1877f2;
+    color: white;
+}
+
+.btn-blue:hover {
+    color: white;
+    background: #3d89ec;
+}
+
+.pass {
+    color: #1059b8;
+    cursor: pointer;
+}
+
+.pass:hover {
+    text-decoration: underline;
+}
+
+.px-btn {
+    padding: 0 22%;
+}
+
+.card {
+    box-shadow: 0px 5px 12px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+    height: 52px;
+}
+
+::placeholder {
+    padding-left: 3px;
+}
+
+.btn-green {
+    background: #42b72a;
+    color: white;
+    padding: 12px 25px;
+}
+.btn-green:hover{
+    background: #38a024;
+    color: white;
+}
+.last-txt {
+    font-size: 13.5px;
+    width: 26rem;
+}
+
+.last-txt span {
+    color: #1c1e21;
+    font-weight: 700;
+    font-size: 15px
+}
+
+.lists {
+    padding-left: 21%;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.lists li {
+    margin-left: 16px;
+    color: rgb(128, 126, 126);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.signUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 430px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding-bottom: 18px;
+    border: 8px;
+    border-radius: 10px;
+    display: none;
+    z-index: 22222;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 18px;
+}
+
+.top>div>h2 {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.top>div>p {
+    color: #606770;
+    line-height: 24px;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.top img {
+    padding-bottom: 35px;
+    cursor: pointer;
+}
+
+hr {
+    margin: -10px 0 10px;
+    background: grey;
+}
+
+.signup_body {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 15px;
+}
+
+.same {
+    font-size: 15px;
+    padding: 8px;
+    outline: none;
+    width: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.458);
+    border-radius: 5px;
+    background-color: rgb(241, 241, 241);
+}
+
+.name {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    font-size: 15px
+}
+
+.bottom input {
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 15px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.458);
+    border-radius: 5px;
+    background-color: rgb(241, 241, 241);
+}
+
+.birthday {
+    padding: 0 15px;
+}
+
+.birthday select {
+    padding: 7px 35px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.458);
+    border-radius: 5px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.blue {
+    color: rgb(28, 28, 107);
+}
+
+.gender {
+    padding: 0 15px;
+}
+
+.gender .person {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.gender .person>div {
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.458);
+    border-radius: 5px;
+    padding: 7px;
+    display: flex;
+    gap: 15px;
+}
+.person>div>label{
+    margin-right: 35px;
+}
+.content{
+    padding: 0 15px;
+}
+.content p{
+    margin: 10px 0;
+    font-size: 11px;
+    color: grey;
+    font-family: sans-serif;
+}
+.text{
+    font-size: 12px;
+    font-family: sans-serif;
+}
+.signin{
+    height: 36px;
+    width: 194px;
+    background: #359c20;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 4px;
+    margin-left: 118px;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    margin-top: 7px;
+}
+.show{
+    display: block;
+}
+.layer{
+    height: 100vh;
+    width: 100%;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2222;
+    opacity: 0.9;
+    display: none;
+}
+
+.footer {
+   background-color: white;
+}
+
+.line{
+    width: 56%;
+    padding-left: 21%;
+}
