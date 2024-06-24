@@ -65,14 +65,15 @@
                                 <form id="logIn">
                                     <input type="text" id="username" placeholder="Email or phone number" class="form-control">
                                     <input type="password" id="password" placeholder="Password" class="form-control mt-3">
+                                    <div id="messageDiv" class="text-danger mt-2 text-center"></div>
                                     <button class="btn btn-blue fw-bold fs-5 mt-3 w-100 py-2" id="logInButton">Log in</button>
                                     <p class="text-center pass mt-3">Forgot password?</p>
                                     <hr class="mt-4 text-muted">
-                                    <div class="px-btn">
+                                </form>
+                                <div class="px-btn">
                                         <button class="btn btn-green fw-bold mt-3 mb-2" onclick="show()">Create new
                                             account</button>
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <p class="last-txt text-center mt-4"><span>Create a page</span> for a celebrity, brand or
@@ -98,18 +99,18 @@
             <form action="">
                 <div class="signup_body">
                     <div class="name">
-                        <input type="text" placeholder="First name" class="same form-label">
-                        <input type="text" placeholder="Last name" class="same form-label">
+                        <input type="text" placeholder="First name" id="firstName" class="same form-label">
+                        <input type="text" placeholder="Last name" id="lastName" class="same form-label">
                     </div>
                     <div class="bottom">
-                        <input type="text" placeholder="Mobile number or email" class="form-label">
-                        <input type="text" placeholder="New password" class="form-label">
+                        <input type="text" placeholder="Mobile number or email" id="mobileOrEmail" class="form-label">
+                        <input type="text" placeholder="New password" id="newPassword" class="form-label">
                     </div>
                 </div>
                 <div class="birthday">
                     <p class="text mb-0">Birthday <i style="color:grey;" class="bi bi-question-circle-fill"></i></p>
                     <div class="date">
-                        <select name="" id="">
+                        <select>
                             <option value="Jan">Jan</option>
                             <option value="Feb">Feb</option>
                             <option value="Mar">Mar</option>
@@ -123,7 +124,7 @@
                             <option value="Nov">Nov</option>
                             <option value="Dec">Dec</option>
                         </select>
-                        <select name="" id="">
+                        <select>
                             <option value="">1</option>
                             <option value="">2</option>
                             <option value="">3</option>
@@ -156,7 +157,7 @@
                             <option value="">30</option>
                             <option value="">31</option>
                         </select>
-                        <select name="" id="">
+                        <select>
                             <option value="">2024</option>
                             <option value="">2023</option>
                             <option value="">2022</option>
@@ -195,7 +196,7 @@
                     <div class="person">
                         <div>
                             <label for="female">Female</label>
-                            <input type="radio" name="gender" id="female">
+                            <input type="radio" name="gender" checked id="female">
                         </div>
                         <div>
                             <label for="male" >Male</label>
@@ -211,7 +212,8 @@
                     <p>People who use our service may have uploaded your contact information to Facebook. <span class="blue">Learn more.</span></p>
                     <p>By clicking sign up, you agree to our Terms, <span class="blue">Privacy Policy and Cookies Policy</span>. You may receive SMS Notifications from us and can opt out any time.</p>
                 </div>
-                <button class="signin">Sign up</button>
+                <button class="signin" id="signUpBtn">Sign up</button>
+                <div id="signUpMessageDiv"></div>
             </form>
         </div>
         <!-- End of registration page -->
@@ -285,6 +287,7 @@
 
     <!-- scripts of the page -->
     <script src="scripts/landing.js"></script>
+    <script src="scripts/register.js"></script>
     <script>
         const show = () => {
             const showsSignUpPage = document.querySelector("#signUp");

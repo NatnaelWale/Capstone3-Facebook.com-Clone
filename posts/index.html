@@ -19,10 +19,14 @@
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="./posts.css">
 
-    <title>/POSTS</title>
+    <title>Facebook</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/2021_Facebook_icon.svg">
 
     <!-- Run BEFORE page is finished loading (before window.onload): -->
-    <script src="../auth.js"></script>
+    <script src="/scripts/auth.js"></script>
+
     <script>
         if (isLoggedIn() === false) window.location.replace("/");
     </script>
@@ -33,7 +37,9 @@
         <h1>POSTS PAGE</h1>
     </header>
 
-    <main></main>
+    <main>
+        <button id="logoutBtn">Log Out</button>
+    </main>
 
     <footer></footer>
 

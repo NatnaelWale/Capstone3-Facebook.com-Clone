@@ -4,10 +4,10 @@
 
 const logInForm = document.querySelector("#logIn");
 
-logInForm.onsubmit = function (event) {
+logInForm.onsubmit = function (e) {
     // Prevent the form from refreshing the page,
     // as it will do by default when the Submit event is triggered:
-    event.preventDefault();
+    e.preventDefault();
 
     // We can use loginForm.username (for example) to access
     // the input element in the form which has the ID of "username".
@@ -15,7 +15,7 @@ logInForm.onsubmit = function (event) {
         username: logInForm.username.value,
         password: logInForm.password.value,
     }
-    // console.log(loginData)
+    // console.log(loginData.token)
 
     // Disables the button after the form has been submitted already:
     logInForm.logInButton.disabled = true;
@@ -24,7 +24,4 @@ logInForm.onsubmit = function (event) {
     login(loginData);
 };
 
-//Popover
-const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-const popoverList = popoverTriggerList.map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
