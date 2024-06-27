@@ -10,3 +10,12 @@
 .bg-gray {
     background-color: #f0f2f5;
   }
+
+  .sticky-top-custom {
+    position: sticky;
+    top: 0;
+}
+
+.no-scroll {
+    overflow: hidden;
+}

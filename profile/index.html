@@ -40,7 +40,7 @@
                 <div class="col d-flex align-items-center">
 
                     <!-- logo -->
-                    <i class="fab fa-facebook text-primary" style="font-size: 2.7rem"></i>
+                    <i class="fab fa-facebook text-primary" style="font-size: 2.7rem" onclick="location.href = '/';"></i>
 
                     <!-- search bar -->
                     <div class="input-group ms-2" type="button">
@@ -1114,7 +1114,7 @@
                             <img src="https://picsum.photos/200/300" alt="avatar" class="rounded-circle me-2"
                                 style="width: 45px; height: 45px; object-fit: cover" />
                             <div>
-                                <p class="m-0 fw-bold" id="menuUserName"></p>
+                                <p class="m-0 fw-bold" id="profilepageFullName"></p>
                                 <p class="m-0 text-muted">See your profile</p>
                             </div>
                         </li>
@@ -2308,7 +2308,7 @@
                         <div class="d-flex flex-column position-relative" style="flex-grow: 1;">
                             <img src="https://picsum.photos/200/300" alt="avatar" class="rounded-circle border shadow ms-2"
                                 style="width: 200px; height: 200px; object-fit: cover; margin: -60px 0 0 40px;" />
-                            <p class="position-absolute fw-bold fs-4" style="top: 20px; left: 230px;">User Name</p>
+                            <p class="position-absolute fw-bold fs-4" style="top: 20px; left: 230px;" id="mainUserName">User Name</p>
                             <p class="position-absolute text-muted" style="top: 60px; left: 230px;">250 friends</p>
                             <div class="position-absolute text-muted" style="top: 90px; left: 230px;">
                                 <img src="https://picsum.photos/200/300?random=6" alt="avatar" class="rounded-circle"
@@ -2373,7 +2373,7 @@
                 <div class="row justify-content-between mx-auto g-3" style="max-width: 1080px;">
             
                     <!-- Left wing details section -->
-                    <div class="col">
+                    <div class="col sticky-top-custom" style="height: fit-content;">
                         <div class="row g-3">
             
                             <!-- Intro Section  -->
@@ -2503,7 +2503,7 @@
                     </div>
             
                     <!-- Right wing details section -->
-                    <div class="col ms-2" id="rightWing">
+                    <div class="col ms-2">
                         <!-- create post -->
                         <div class="bg-white p-3 rounded border shadow" style="background-color: white;">
                             <!-- avatar -->
@@ -2634,7 +2634,9 @@
                         </div>
             
                         <!-- Posts made by the user -->
+                        <div  id="right-wing">
 
+                        </div>
                     </div>
                 </div>
             </div>

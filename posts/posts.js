@@ -156,65 +156,31 @@ function toggleLike(button, likeCountElement, userLikes, postId, token) {
   }
 }
 
-function createPost(userName, userBio, userAvatar, postImageSrc, commentId, lastCheck, userLikes, postId, token) {
-  const postContainer = createElement('div', 'bg-white p-4 rounded shadow mt-3');
-  const postHeader = createElement('div', 'd-flex justify-content-between');
-  const authorInfo = createElement('div', 'd-flex');
-  const avatar = createAvatar(userAvatar);
-  const authorDetails = createElement('div', null, `<p class="m-0 fw-bold">${userName}</p><span class="text-muted fs-7">${lastCheck}</span>`);
-  authorInfo.appendChild(avatar);
-  authorInfo.appendChild(authorDetails);
-  const { menuIcon, editMenu } = createDropdownMenu(`post${commentId}Menu`);
-  postHeader.appendChild(authorInfo);
-  postHeader.appendChild(menuIcon);
-  postHeader.appendChild(editMenu);
-  postContainer.appendChild(postHeader);
-  const postContent = createElement('div', 'mt-3');
-  const postText = createElement('p', null, userBio, { id: 'bioDisplay' });
-  const postImage = createElement('img', 'img-fluid rounded', null, {
-      src: postImageSrc,
-      alt: 'post image',
-  });
-  postContent.appendChild(postText);
-  postContent.appendChild(postImage);
-  postContainer.appendChild(postContent);
+function getTimeDifferenceString(lastCheck) {
+  const now = new Date();
+  const lastCheckTime = new Date(lastCheck);
+  const differenceInMilliseconds = now - lastCheckTime;
+  const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
 
-  const likeCommentSection = createElement('div', 'post__comment mt-3 position-relative d-flex justify-content-between');
-  const likeCountElement = createElement('p', 'm-0 text-muted fs-7', `${userLikes.length} likes`);
-  const likeButton = createElement('div', 'me-2 pointer', '<i class="fas fa-thumbs-up"></i><i class="text-danger fab fa-gratipay"></i><i class="text-warning fas fa-grin-squint"></i>');
-  likeButton.addEventListener('click', () => toggleLike(likeButton, likeCountElement, userLikes, postId, token));
-  const likeSection = createElement('div', 'd-flex align-items-center', null);
-  likeSection.appendChild(likeButton);
-  likeSection.appendChild(likeCountElement);
-
-  const commentShareInfo = createElement('div', 'd-flex align-items-center', '<p class="m-0 text-muted">2 comments </p><p class="m-1 text-muted">14 shares</p>');
-  likeCommentSection.appendChild(likeSection);
-  likeCommentSection.appendChild(commentShareInfo);
-  postContainer.appendChild(likeCommentSection);
-
-  const commentButton = createElement('div', 'dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted p-1', '<i class="fas fa-thumbs-up me-3"></i><p class="m-0">Like</p>');
-  commentButton.addEventListener('click', () => toggleLike(commentButton, likeCountElement, userLikes, postId, token));
-  const commentSectionButton = createElement('div', 'dropdown-item rounded d-flex justify-content-center align-items-center pointer text-muted p-1', '<i class="fas fa-comment-alt me-3"></i><p class="m-0">Comment</p>', {
-      'data-bs-toggle': 'collapse',
-      'data-bs-target': `#comments${commentId}`,
-      'aria-expanded': 'false',
-      'aria-controls': `comments${commentId}`
-  });
-  const buttonContainer = createElement('div', 'd-flex justify-content-around mt-2');
-  buttonContainer.appendChild(commentButton);
-  buttonContainer.appendChild(commentSectionButton);
-  postContainer.appendChild(buttonContainer);
-
-  postContainer.appendChild(createCommentSection(commentId));
-  return postContainer;
+  if(differenceInMinutes < 1){
+    return "few seconds ago";
+  }
+  else if (differenceInMinutes < 60) {
+      return `${differenceInMinutes} minutes ago`;
+  } else {
+      const differenceInHours = Math.floor(differenceInMinutes / 60);
+      return `${differenceInHours} hours ago`;
+  }
 }
 
+
 function createPost(userName, userBio, userAvatar, postImageSrc, commentId, lastCheck, userLikes, postId, token) {
+  const timeDifferenceString = getTimeDifferenceString(lastCheck);
   const postContainer = createElement('div', 'bg-white p-4 rounded shadow mt-3');
   const postHeader = createElement('div', 'd-flex justify-content-between');
   const authorInfo = createElement('div', 'd-flex');
   const avatar = createAvatar(userAvatar);
-  const authorDetails = createElement('div', null, `<p class="m-0 fw-bold">${userName}</p><span class="text-muted fs-7">${lastCheck}</span>`);
+  const authorDetails = createElement('div', null, `<p class="m-0 fw-bold">${userName}</p><span class="text-muted fs-7">${timeDifferenceString}</span>`);
   authorInfo.appendChild(avatar);
   authorInfo.appendChild(authorDetails);
   const { menuIcon, editMenu } = createDropdownMenu(`post${commentId}Menu`);
@@ -280,9 +246,6 @@ function getAllPosts() {
       
       const postsContainer = createPostsContainer();
       users.forEach((user, index) => {
-        if(user.username == loginData.username){
-          document.getElementById("menuUserName").textContent = user.fullName;
-        }
         // console.log(user)
         const userName = user.username || "Unknown Name";
         const userBio = user.text;
@@ -318,7 +281,7 @@ getAllPosts();
 function createPostsContainer() {
   return createElement(
     "div",
-    "container custom-container d-flex flex-column align-items-center col-12 col-md-6",
+    "container d-flex flex-column align-items-center col-12 col-md-6",
     null,
     {
       style: "width: 700px; margin-top: -40px;",
@@ -327,26 +290,36 @@ function createPostsContainer() {
 }
 
 
-// function getAllUsers() {
-//   const loginData = getLoginData();
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${loginData.token}`,
-//     },
-//   };
+function getLoggedInUsers() {
+  const loginData = getLoginData();
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${loginData.token}`,
+    },
+  };
+  const postUserNameHere = document.querySelector("#postUserNameHere")
+  const menuUserNameHere = document.querySelector("#menuUserNameHere");
+  const postMainUserName = document.querySelector("#postMainUserName");
+  fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data.fullName) 
+      let loggedInUserFullName = data.fullName;
+      postUserNameHere.textContent = loggedInUserFullName;
+      menuUserNameHere.textContent = loggedInUserFullName;
+      postMainUserName.textContent = loggedInUserFullName;
+      return loggedInUserFullName;
+    })
+    .catch((error) => {
+      console.error("Error fetching logged in user:", error);
+    });
+}
+getLoggedInUsers();
 
-//   fetch(apiBaseURL + "/api/users", options)
-//     .then((response) => response.json())
-//     .then((users) => {
-//       users.forEach((user) => {
-//         const userName = user.username || "Unknown Name";
-//     //  console.log(userName)
-//       });
-//     })
-// }
 
-// getAllUsers();
+
+// post request codes
 
 const createModal = document.querySelector("#createModal");
 const postContent = document.querySelector("#postContent");
