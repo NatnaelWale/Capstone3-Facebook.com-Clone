@@ -14,7 +14,8 @@ function onSignUpBtnClicked(e){
     e.preventDefault();
 
     if (!firstName.value || !lastName.value || !mobileOrEmail.value || !newPassword.value) {
-        signUpMessageDiv.innerHTML = 'All fields are required.';
+        signUpMessageDiv.className = "text-danger text-center mt-2"
+        signUpMessageDiv.innerHTML = 'All fields are required!';
         return;
     };
 
@@ -23,7 +24,7 @@ function onSignUpBtnClicked(e){
         fullName: firstName.value + " " + lastName.value,
         password: newPassword.value
     }
-    console.log(bodyData)
+    // console.log(bodyData)
 
     fetch(apiBaseURL + "/api/users", {
         method: "POST",
@@ -41,7 +42,7 @@ function onSignUpBtnClicked(e){
         } else{
             signUpMessageDiv.className = "text-success text-center border p-2 shadow bg-success m-1 text-white"
             signUpMessageDiv.innerHTML = 'User created Succesfully. Please login with the credentials you used.'
-            setTimeout("location.href = 'index.html';", 3000);
+            setTimeout("location.href = 'index.html';", 2000);
         }
     })
     .catch(error => {

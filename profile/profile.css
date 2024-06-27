@@ -1,0 +1,12 @@
+.lists a{
+    text-decoration: none;
+    color: grey;
+}
+.postList {
+    text-decoration: underline !important;
+    color: blue !important;
+}
+
+.bg-gray {
+    background-color: #f0f2f5;
+  }

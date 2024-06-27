@@ -50,7 +50,7 @@
         <!-- For the login and information page -->
         <div class="container-fluid" style="margin-top: 8%;">
             <div class="row">
-                <div class="col">
+                <div class="col-lg-6">
                     <br>
                     <br>
                     <div class="first">
@@ -58,7 +58,7 @@
                         <p class="text-black">Connect with friends and the world around you on Facebook.</p>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-lg-6">
                     <div class="second">
                         <div class="card" style="width: 26rem;">
                             <div class="card-body">
@@ -208,6 +208,19 @@
                         </div>
                     </div>
                 </div>
+                <!-- gender select -->
+                <div class="d-none gender mt-3" id="genderSelect">
+                    <select class="form-select text-muted">
+                      <option value="1">Select your pronoun</option>
+                      <option value="2">She: "Wish her a happy birthday!"</option>
+                      <option value="3">He: "Wish him a happy birthday!"</option>
+                      <option value="3">They: "Wish them a happy birthday!"</option>
+                    </select>
+                    <div class="my-3">
+                      <span class="text-muted fs-7">Your pronoun is visible to everyone.</span>
+                      <input type="text" class="form-control" placeholder="Gender (optional)" />
+                    </div>
+                  </div>
                 <div class="content">
                     <p>People who use our service may have uploaded your contact information to Facebook. <span class="blue">Learn more.</span></p>
                     <p>By clicking sign up, you agree to our Terms, <span class="blue">Privacy Policy and Cookies Policy</span>. You may receive SMS Notifications from us and can opt out any time.</p>
@@ -226,7 +239,7 @@
 
     <!-- Footer of the page -->
     <footer class="fixed-bottom footer pt-5">
-        <ul class="d-flex lists list-unstyled">
+        <ul class="d-flex lists list-unstyled flex-wrap">
             <li>English(US)</li>
             <li>Español</li>
             <li>Français (France)</li>
