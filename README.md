@@ -34,14 +34,6 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 - **Backend**
   - Used an api from [microbloglite.us](http://microbloglite.us-east-2.elasticbeanstalk.com/)
 
-
-### Installation
-
- Clone the repository:
-
-   ```bash
-   git clone https://github.com/NatnaelWale/Capstone3-Facebook.com-Clone
-
 <br />
 <br />
 
