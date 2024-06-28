@@ -51,7 +51,7 @@ function loadUserImages() {
 
   const img5 = document.createElement("img");
   img5.src = `https://picsum.photos/seed/${loginData.username}/200/300`;
-  img5.className = "rounded-circle";
+  img5.className = "rounded-circle mx-2";
   img5.alt = "avatar";
   img5.style.width = "38px";
   img5.style.height = "38px";
