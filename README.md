@@ -62,6 +62,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 
 <br />
 <br />
+
 # Pictures of the Posts Page
 <figure>
     <img src="/images/Posts Page.jpg"
@@ -143,6 +144,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 
 <br />
 <br />
+
 # Pictures of the Profile Page
 <figure>
     <img src="/images/Profile Page - Front.jpg"
