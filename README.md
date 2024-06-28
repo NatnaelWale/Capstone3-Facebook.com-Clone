@@ -45,6 +45,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Registration Page.jpg"
@@ -52,6 +53,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Registration Page</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -71,6 +73,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Posts Page - Chat Modal Opened.jpg"
@@ -78,6 +81,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Posts Page - Chat Modal Opened</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -87,6 +91,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Posts Page - Filtered with Popularity.jpg"
@@ -94,6 +99,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Posts Page - Filtered with Popularity</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -103,6 +109,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Posts Page - New Chat Modal Opened.jpg"
@@ -110,6 +117,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Posts Page - New Chat Modal Opened</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -119,6 +127,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Posts Page with Message Dropdown Opened.jpg"
@@ -127,6 +136,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Posts Page with Notifications Dropdown Opened.jpg"
@@ -134,6 +144,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Posts Page - Notifications Dropdown Opened</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -153,6 +164,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Profile Page - Scrolled to User Posts.jpg"
@@ -160,6 +172,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Profile Page - Scrolled to User Posts</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -169,6 +182,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Profile Page - Edit and Delete Post Menu Opened Up.jpg"
@@ -176,6 +190,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Profile Page - Edit and Delete Post Menu Opened</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
@@ -185,6 +200,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
 </figure>
 
 <br />
+<br />
 
 <figure>
     <img src="/images/Profile Page - Edit User Details Modal Opened.jpg"
@@ -192,6 +208,7 @@ Welcome to the Facebook Clone project! This project is developed by me as the th
     <figcaption>Profile Page - Edit User Details Modal Opened</figcaption>
 </figure>
 
+<br />
 <br />
 
 <figure>
