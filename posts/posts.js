@@ -2,6 +2,68 @@
 
 "use strict";
 
+const loginData = getLoginData();
+// console.log(loginData)
+
+function loadUserImages() {
+  const img1 = document.createElement("img");
+  img1.src = `https://picsum.photos/seed/${loginData.username}/200/300`;
+  img1.className = "rounded-circle";
+  img1.alt = "avatar";
+  img1.style.width = "38px";
+  img1.style.height = "38px";
+  img1.style.objectFit = "cover";
+
+  const postsTopRightImage = document.getElementById("postsTopRightImage");
+  postsTopRightImage.appendChild(img1);
+
+  const img2 = document.createElement("img");
+  img2.src = `https://picsum.photos/seed/${loginData.username}/200/300`;
+  img2.className = "rounded-circle";
+  img2.alt = "avatar";
+  img2.style.width = "38px";
+  img2.style.height = "38px";
+  img2.style.objectFit = "cover";
+
+  const postsSideBarPhoto = document.getElementById("postsSideBarPhoto");
+  postsSideBarPhoto.appendChild(img2);
+
+  const img3 = document.createElement("img");
+  img3.src = `https://picsum.photos/seed/${loginData.username}/200/300`;
+  img3.className = "card-img-top";
+  img3.alt = "story posts";
+  img3.style.minHeight = "125px";
+  img3.style.objectFit = "cover";
+
+  const userStoryPhoto = document.getElementById("userStoryPhoto");
+  userStoryPhoto.appendChild(img3);
+
+  const img4 = document.createElement("img");
+  img4.src = `https://picsum.photos/seed/${loginData.username}/200/300`;
+  img4.className = "rounded-circle";
+  img4.alt = "avatar";
+  img4.style.width = "38px";
+  img4.style.height = "38px";
+  img4.style.objectFit = "cover";
+
+  const createPostPhoto = document.getElementById("createPostPhoto");
+  createPostPhoto.appendChild(img4);
+
+  const img5 = document.createElement("img");
+  img5.src = `https://picsum.photos/seed/${loginData.username}/200/300`;
+  img5.className = "rounded-circle";
+  img5.alt = "avatar";
+  img5.style.width = "38px";
+  img5.style.height = "38px";
+  img5.style.objectFit = "cover";
+
+  const postsPageProfileIcon = document.getElementById("postsPageProfileIcon");
+  postsPageProfileIcon.appendChild(img5);
+}
+
+loadUserImages();
+
+
 function createElement(type, classNames, innerHTML, attributes = {}) {
   const element = document.createElement(type);
   if (classNames) element.className = classNames;
@@ -12,6 +74,7 @@ function createElement(type, classNames, innerHTML, attributes = {}) {
   return element;
 }
 
+
 function createAvatar(src) {
   return createElement("img", "rounded-circle me-2", null, {
     src,
@@ -19,6 +82,7 @@ function createAvatar(src) {
     style: "width: 38px; height: 38px; object-fit: cover",
   });
 }
+
 
 function createDropdownMenu(menuId) {
   const menuIcon = createElement("i", "fas fa-ellipsis-h", null, {
@@ -33,13 +97,13 @@ function createDropdownMenu(menuId) {
   const editPost = createElement(
     "a",
     "dropdown-item d-flex justify-content-around align-items-center fs-7",
-    "Edit Post",
+    "Save Post",
     { href: "#" }
   );
   const deletePost = createElement(
     "a",
     "dropdown-item d-flex justify-content-around align-items-center fs-7",
-    "Delete Post",
+    "Report Post",
     { href: "#" }
   );
   const li1 = createElement("li", "d-flex align-items-center");
@@ -50,6 +114,7 @@ function createDropdownMenu(menuId) {
   editMenu.appendChild(li2);
   return { menuIcon, editMenu };
 }
+
 
 function createCommentSection(commentId) {
   const commentSection = createElement("div", "collapse", null, {
@@ -135,26 +200,49 @@ function removeLike(likeId, token, callback) {
       })
       .then(data => {
           console.log('Like removed:', data);
-          callback();
+          callback(data);
       })
       .catch(error => console.error('Error removing like:', error));
 }
+
+
+// Function to initialize the like button state
+function initializeLikeButton(button, userLikes, postId) {
+  const userHasLiked = userLikes.some(like => like.postId === postId);
+  if (userHasLiked) {
+      button.classList.add('liked');
+      button.querySelector('i').classList.add('text-primary');
+  } else {
+      button.classList.remove('liked');
+      button.querySelector('i').classList.remove('text-primary');
+  }
+}
+
+// Function to toggle like
 function toggleLike(button, likeCountElement, userLikes, postId, token) {
   const liked = button.classList.toggle('liked');
   if (liked) {
       addLike(postId, token, (newLike) => {
-          userLikes.push(newLike);
+          userLikes.push({ postId, likeId: newLike._id });
           button.querySelector('i').classList.add('text-primary');
           likeCountElement.innerHTML = `${userLikes.length} likes`;
       });
   } else {
-      const likeId = userLikes.pop().likeId;
-      removeLike(likeId, token, () => {
-          button.querySelector('i').classList.remove('text-primary');
-          likeCountElement.innerHTML = `${userLikes.length} likes`;
-      });
+      const likeIndex = userLikes.findIndex(like => like.postId === postId);
+      if (likeIndex !== -1) {
+          const likeId = userLikes[likeIndex].likeId;
+          console.log('Removing like with ID:', likeId);  // Debug log
+          userLikes.splice(likeIndex, 1);
+          removeLike(likeId, token, () => {
+              button.querySelector('i').classList.remove('text-primary');
+              likeCountElement.innerHTML = `${userLikes.length} likes`;
+          });
+      } else {
+          console.error('Like ID not found for removal.');
+      }
   }
 }
+
 
 function getTimeDifferenceString(lastCheck) {
   const now = new Date();
@@ -176,7 +264,7 @@ function getTimeDifferenceString(lastCheck) {
 
 function createPost(userName, userBio, userAvatar, postImageSrc, commentId, lastCheck, userLikes, postId, token) {
   const timeDifferenceString = getTimeDifferenceString(lastCheck);
-  const postContainer = createElement('div', 'bg-white p-4 rounded shadow mt-3');
+  const postContainer = createElement('div', 'bg-white p-4 rounded shadow mt-3 postContainer');
   const postHeader = createElement('div', 'd-flex justify-content-between');
   const authorInfo = createElement('div', 'd-flex');
   const avatar = createAvatar(userAvatar);
@@ -189,7 +277,7 @@ function createPost(userName, userBio, userAvatar, postImageSrc, commentId, last
   postHeader.appendChild(editMenu);
   postContainer.appendChild(postHeader);
   const postContent = createElement('div', 'mt-3');
-  const postText = createElement('p', null, userBio, { id: 'bioDisplay' });
+  const postText = createElement('p', 'text-break', userBio, { id: 'bioDisplay' });
   const postImage = createElement('img', 'img-fluid rounded', null, {
       src: postImageSrc,
       alt: 'post image',
@@ -229,8 +317,8 @@ function createPost(userName, userBio, userAvatar, postImageSrc, commentId, last
 }
 
 
-function getAllPosts() {
-  const loginData = getLoginData();
+function getAllPostsByTime() {
+  // const loginData = getLoginData();
   const options = {
     method: "GET",
     headers: {
@@ -268,30 +356,79 @@ function getAllPosts() {
         );
         postsContainer.appendChild(post);
       });
-      document.body.appendChild(postsContainer);
+      document.getElementById("postContainer").appendChild(postsContainer);
     })
     .catch((error) => {
       console.error("Error fetching posts:", error);
     });
 }
 
-getAllPosts();
+getAllPostsByTime();
+
+
+function getAllPostsByLike() {
+  // const loginData = getLoginData();
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${loginData.token}`,
+    },
+  };
+
+  fetch(apiBaseURL + "/api/posts", options)
+    .then((response) => response.json())
+    .then((users) => {
+      // Sort users by popularity amount in descending order
+      users.sort((a, b) => b.likes.length - a.likes.length);
+      console.log(users)
+      
+      const postsContainer = createPostsContainer();
+      users.forEach((user, index) => {
+        // console.log(user)
+        const userName = user.username || "Unknown Name";
+        const userBio = user.text;
+        const userLikes = user.likes;
+        const postId = user._id
+        // console.log(postId)
+        const updatedAt = new Date(user.createdAt).toLocaleString();
+        const userAvatar = `https://picsum.photos/200/300?random=${index + 1}`; 
+        const postImageSrc = `https://picsum.photos/700/300?random=${index + 1}`;
+        const post = createPost(
+          userName,
+          userBio,
+          userAvatar,
+          postImageSrc,
+          index,
+          updatedAt,
+          userLikes,
+          postId,
+          loginData.token
+        );
+        postsContainer.appendChild(post);
+      });
+      document.getElementById("postContainer2").appendChild(postsContainer);
+    })
+    .catch((error) => {
+      console.error("Error fetching posts:", error);
+    });
+}
+
 
 
 function createPostsContainer() {
   return createElement(
     "div",
-    "container d-flex flex-column align-items-center col-12 col-md-6",
+    "d-flex flex-column align-items-center col-12 col-md-6 mt-2",
     null,
     {
-      style: "width: 700px; margin-top: -40px;",
+      style: "width: 680px; margin-top: -40px;",
     }
   );
 }
 
 
 function getLoggedInUsers() {
-  const loginData = getLoginData();
+  // const loginData = getLoginData();
   const options = {
     method: "GET",
     headers: {
@@ -304,7 +441,7 @@ function getLoggedInUsers() {
   fetch(apiBaseURL + `/api/users/${loginData.username}`, options)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.fullName) 
+      console.log(data) 
       let loggedInUserFullName = data.fullName;
       postUserNameHere.textContent = loggedInUserFullName;
       menuUserNameHere.textContent = loggedInUserFullName;
@@ -330,7 +467,7 @@ postBtn.onclick = onPostBtnClicked;
 
 function onPostBtnClicked(e) {
   e.preventDefault();
-  const loginData = getLoginData();
+  // const loginData = getLoginData();
 
   let bodyData = {
     text: postContent.value
@@ -371,5 +508,35 @@ logoutBtn.onclick = function (e) {
   e.preventDefault();
   logout();
 };
-const loginData = getLoginData();
+
 console.log(loginData.token);
+
+
+
+
+
+
+//Toggle between the posts display preference
+document.addEventListener('DOMContentLoaded', () => {
+  const recentPostsBtn = document.getElementById('recentPostsBtn');
+  const popularPostsBtn = document.getElementById('popularPostsBtn');
+  const postContainer = document.getElementById('postContainer');
+  const postContainer2 = document.getElementById('postContainer2');
+
+  function toggleButtonClasses(activeBtn, inactiveBtn) {
+      activeBtn.classList.add('border', 'border-info', 'border-start-1', 'rounded-end');
+      inactiveBtn.classList.remove('border', 'border-info', 'border-start-1', 'rounded-end');
+  }
+
+  recentPostsBtn.addEventListener('click', () => {
+      toggleButtonClasses(recentPostsBtn, popularPostsBtn);
+      postContainer2.innerHTML = "";
+      getAllPostsByTime(postContainer);
+  });
+
+  popularPostsBtn.addEventListener('click', () => {
+      toggleButtonClasses(popularPostsBtn, recentPostsBtn);
+      postContainer.innerHTML = "";
+      getAllPostsByLike(postContainer);
+  });
+});

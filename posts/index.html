@@ -1094,25 +1094,19 @@
                 mx-2
               " style="width: 38px; height: 38px" type="button" id="secondMenu" data-bs-toggle="dropdown"
                         aria-expanded="false" data-bs-auto-close="outside">
-                        <div class="align-items-center justify-content-center d-xl-flex ">
-                            <img src="https://picsum.photos/200/300" class="rounded-circle me-2" alt="avatar"
-                                style="width: 38px; height: 38px; object-fit: cover" />
-                            <i
-                                class="fas fa-caret-down position-relative translate-middle rounded-circle p-0 bg-gray"></i>
-                        </div>
+                        <div class="d-flex align-items-center justify-content-center position-relative" style="width: 38px; height: 38px;">
+                            <div id="postsTopRightImage"></div>
+                            <div class="position-bottom-right bg-gray rounded-circle">
+                              <i class="fas fa-caret-down"></i>
+                            </div>
+                          </div>
 
-                        <!-- <i type="button" class="position-relative fas fa-users text-muted fs-4">
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5rem">
-                                1
-                            </span>
-                        </i> -->
                     </div>
                     <!-- secondary menu dropdown -->
                     <ul class="dropdown-menu border-0 shadow p-3" aria-labelledby="secondMenu" style="width: 23em">
                         <!-- avatar -->
                         <li class="dropdown-item p-1 rounded d-flex" type="button" onclick="location.href = '../profile/index.html';">
-                            <img src="https://picsum.photos/200/300" alt="avatar" class="rounded-circle me-2"
-                                style="width: 45px; height: 45px; object-fit: cover"/>
+                            <div id="postsPageProfileIcon"></div>
                             <div>
                                 <p class="m-0 fw-bold" id="menuUserNameHere"></p>
                                 <p class="m-0 text-muted">See your profile</p>
@@ -1501,7 +1495,7 @@
                                     <a href="./index.html" class="d-flex text-decoration-none text-dark">
                                         <i class="fas fa-cog bg-gray p-2 rounded-circle"></i>
                                         <div class="ms-3 d-flex justify-content-between align-items-center w-100">
-                                            <button class="border-0 bg-white" id="logoutBtn">Log Out</button>
+                                            <button class="border-0 btn w-100 text-start" id="logoutBtn">Log Out</button>
                                         </div>
                                     </a>
                                 </li>
@@ -2288,7 +2282,7 @@
     <div class="container-fluid">
         <div class="row justify-content-evenly">
 
-            <!-- ================= Sidebar ================= -->
+            <!-- ================= Sidebar Menus ================= -->
             <div class="col-12 col-lg-3">
                 <div class="d-none d-xxl-block h-100 fixed-top overflow-hidden scrollbar"
                     style="max-width: 360px; width: 100%; z-index: 4">
@@ -2300,10 +2294,10 @@
                     d-flex
                     align-items-center
                     text-decoration-none text-dark
-                  ">
-                                <div class="p-2">
-                                    <img src="https://picsum.photos/200/300" alt="avatar" class="rounded-circle me-2"
-                                        style="width: 38px; height: 38px; object-fit: cover" />
+                  " onclick="location.href = '/profile/index.html'">
+                                <div class="p-2" id="postsSideBarPhoto">
+                                    <!-- <img src="https://picsum.photos/200/300" alt="avatar" class="rounded-circle me-2"
+                                        style="width: 38px; height: 38px; object-fit: cover" /> -->
                                 </div>
                                 <div>
                                     <p class="m-0 fw-bold fs-5" id="postMainUserName"></p>
@@ -2734,7 +2728,7 @@
                 </div>
             </div>
 
-            <!-- ================= Timeline ================= -->
+            <!-- ================= Timeline story and posts ================= -->
             <div class="col-12 col-lg-6 pb-5">
                 <div class="d-flex flex-column justify-content-center w-100 mx-auto"
                     style="padding-top: 56px; max-width: 680px">
@@ -2743,8 +2737,8 @@
                     <div class="mt-5 d-flex justify-content-between position-relative">
                         <!-- story 1 -->
                         <div class="mx-1 bg-white rounded story" type="button" style="width: 6em; height: 190px">
-                            <img src="https://picsum.photos/200/300" class="card-img-top" alt="story posts"
-                                style="min-height: 125px; object-fit: cover" />
+                            <div id="userStoryPhoto">
+                            </div>
                             <div class="d-flex align-items-center justify-content-center position-relative"
                                 style="min-height: 65px">
                                 <p class="mb-0 text-center fs-7 fw-bold">Create Story</p>
@@ -2791,9 +2785,7 @@
                     <div class="bg-white p-3 mt-3 rounded border shadow">
                         <!-- avatar -->
                         <div class="d-flex" type="button">
-                            <div class="p-1">
-                                <img src="https://picsum.photos/200/300" alt="avatar" class="rounded-circle me-2"
-                                    style="width: 38px; height: 38px; object-fit: cover" />
+                            <div class="p-1" id="createPostPhoto">
                             </div>
                             <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="border-0 w-100">
                             <input type="text" class="form-control rounded-pill border-0 bg-gray pointer" placeholder="What is your mind?"/>
@@ -3003,11 +2995,31 @@
                         </div>
                     </div>
 
+                    <!-- viewing preferenece -->
+                    <div class="bg-white p-3 mt-3 rounded border shadow d-flex flex-column flex-md-row justify-content-evenly position-relative">
+                        <button class="d-flex border border-info border-start-1 rounded-end btn w-100 w-md-50 bg-white px-2 mb-2 mb-md-0 active" id="recentPostsBtn">
+                            <i class="fa fa-solid fa-bars px-3"></i>
+                            <p class="text-muted mb-0">Recent to old posts</p>
+                        </button>
+                        <button class="mx-1 d-flex border-0 btn w-100 w-md-50 bg-white px-2 border-left" id="popularPostsBtn">
+                            <i class="fa fa-solid fa-thumbs-up px-3"></i>
+                            <p class="text-muted mb-0">Most popular posts</p>
+                        </button>
+                    </div>
+
+                    <div id="postContainer">
+
+                    </div>
+
+                    <div id="postContainer2">
+
+                    </div>
+
                     <!-- posts programmaticaly created here from the posts.js -->
                 </div>
             </div>
 
-            <!-- ================= Chatbar ================= -->
+            <!-- ================= Chatbar & sponsor ================= -->
             <div class="col-12 col-lg-3">
                 <div class="
               d-none d-xxl-block
@@ -3111,7 +3123,7 @@
                     text-decoration-none
                     link-dark
                   ">
-                                <img src="https://external-atl3-1.xx.fbcdn.net/emg1/v/t13/63830106562083481?url=https%3A%2F%2Fwww.facebook.com%2Fproducts%2Fimage%2F%3Fitem_id%3D6692406957528027%26display%3Dmulti_square%26version%3D1%26image_id%3D25008302215482951%26image_width%3D960%26image_height%3D960%26display_option%3Dbackground_padding%26logging_boundary%3DUNKNOWN%26use_case%3Ddpa_ad%26use_telephoto%3D1&fb_obo=1&utld=facebook.com&stp=dst-jpg_flffffff_q75&ccb=13-1&oh=06_Q399DulrqvHOgvlYMycj_TMTgxtHrf0o9k9-fKsxfjIqZFc&oe=667D2B92&_nc_sid=7ef9ff"
+                                <img src="/images/Lexus.avif"
                                     alt="ads" style="width: 100px; height: 100px; object-fit: cover"
                                     class="rounded me-3" />
                                 <div>
@@ -4319,6 +4331,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- Page-specific code -->
     <script src="./posts.js"></script>
