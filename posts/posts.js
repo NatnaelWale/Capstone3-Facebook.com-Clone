@@ -205,19 +205,6 @@ function removeLike(likeId, token, callback) {
       .catch(error => console.error('Error removing like:', error));
 }
 
-
-// Function to initialize the like button state
-function initializeLikeButton(button, userLikes, postId) {
-  const userHasLiked = userLikes.some(like => like.postId === postId);
-  if (userHasLiked) {
-      button.classList.add('liked');
-      button.querySelector('i').classList.add('text-primary');
-  } else {
-      button.classList.remove('liked');
-      button.querySelector('i').classList.remove('text-primary');
-  }
-}
-
 // Function to toggle like
 function toggleLike(button, likeCountElement, userLikes, postId, token) {
   const liked = button.classList.toggle('liked');

@@ -147,65 +147,75 @@ function createCommentSection(commentId) {
 
 function addLike(postId, token, callback) {
   const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ postId }),
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ postId }),
   };
 
   fetch(`${apiBaseURL}/api/likes`, options)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Like added:", data);
-      callback(data);
-    })
-    .catch((error) => console.error("Error adding like:", error));
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Like added:', data);
+          callback(data);
+      })
+      .catch(error => console.error('Error adding like:', error));
 }
 
 function removeLike(likeId, token, callback) {
   const options = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+      method: "DELETE",
+      headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+      },
   };
 
+  // console.log('Removing like with ID:', likeId); // Debug log
+
   fetch(`${apiBaseURL}/api/likes/${likeId}`, options)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Like removed:", data);
-      callback();
-    })
-    .catch((error) => console.error("Error removing like:", error));
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Like removed:', data);
+          callback(data);
+      })
+      .catch(error => console.error('Error removing like:', error));
 }
 
+// Function to toggle like
 function toggleLike(button, likeCountElement, userLikes, postId, token) {
-  const liked = button.classList.toggle("liked");
+  const liked = button.classList.toggle('liked');
   if (liked) {
-    addLike(postId, token, (newLike) => {
-      userLikes.push(newLike);
-      button.querySelector("i").classList.add("text-primary");
-      likeCountElement.innerHTML = `${userLikes.length} likes`;
-    });
+      addLike(postId, token, (newLike) => {
+          userLikes.push({ postId, likeId: newLike._id });
+          button.querySelector('i').classList.add('text-primary');
+          likeCountElement.innerHTML = `${userLikes.length} likes`;
+      });
   } else {
-    const likeId = userLikes.pop().likeId;
-    removeLike(likeId, token, () => {
-      button.querySelector("i").classList.remove("text-primary");
-      likeCountElement.innerHTML = `${userLikes.length} likes`;
-    });
+      const likeIndex = userLikes.findIndex(like => like.postId === postId);
+      if (likeIndex !== -1) {
+          const likeId = userLikes[likeIndex].likeId;
+          console.log('Removing like with ID:', likeId);  // Debug log
+          userLikes.splice(likeIndex, 1);
+          removeLike(likeId, token, () => {
+              button.querySelector('i').classList.remove('text-primary');
+              likeCountElement.innerHTML = `${userLikes.length} likes`;
+          });
+      } else {
+          console.error('Like ID not found for removal.');
+      }
   }
 }
 
